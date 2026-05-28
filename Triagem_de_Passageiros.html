@@ -97,7 +97,9 @@ html, body { min-height: 100%; background: #fff8f6; }
 
 <!-- TopNavBar para Mobile -->
 <nav class="fixed top-0 left-0 w-full flex justify-between items-center px-6 h-14 bg-stone-50/90 backdrop-blur-md border-b border-stone-200 z-40 lg:hidden">
-    <div class="font-bold text-emerald-900">VanStop</div>
+    <div class="flex items-center">
+        <img src="logo.jpeg" alt="VanStop Logo" class="h-6 w-auto object-contain" />
+    </div>
     <div class="flex items-center gap-4 text-emerald-800 text-sm">
         <span class="material-symbols-outlined cursor-pointer hover:bg-stone-100 p-1 rounded">notifications</span>
         <span class="font-bold border-b-2 border-emerald-700 pb-0.5">Triagem</span>
@@ -106,14 +108,8 @@ html, body { min-height: 100%; background: #fff8f6; }
 
 <!-- SideNavBar para Desktop -->
 <nav class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-4 pb-8 bg-stone-50 border-r w-64 border-stone-200 z-40">
-    <div class="px-6 mb-8 flex items-center gap-3">
-        <div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined">directions_bus</span>
-        </div>
-        <div>
-            <div class="text-lg font-bold text-emerald-900 leading-none">VanStop</div>
-            <div class="text-stone-600 text-xs font-semibold uppercase tracking-wider mt-1.5">Módulo Motorista</div>
-        </div>
+    <div class="px-6 mb-8">
+        <img src="logo.jpeg" alt="VanStop Logo" class="w-full h-auto object-contain max-h-12" />
     </div>
     <ul class="flex-1 space-y-1 px-3">
         <li>

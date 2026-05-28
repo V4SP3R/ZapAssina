@@ -95,14 +95,8 @@ html, body { min-height: 100%; background: #fff8f6; -webkit-tap-highlight-color:
 <!-- Sidebar para Desktop -->
 <aside class="hidden lg:flex fixed left-0 top-0 bottom-0 w-[296px] z-40 p-5">
 <nav class="glass w-full rounded-xl p-4 flex flex-col">
-<div class="flex items-center gap-3 px-2 pb-6 border-b border-line">
-<div class="w-11 h-11 rounded-lg bg-signalDeep text-signal flex items-center justify-center border border-signal/25">
-<span class="material-symbols-outlined">directions_bus</span>
-</div>
-<div>
-<h1 class="text-[20px] font-bold tracking-tight text-signal leading-none">VanStop</h1>
-<p class="text-[10px] font-semibold uppercase tracking-[0.16em] text-textMuted mt-1.5">Módulo Motorista</p>
-</div>
+<div class="px-2 pb-6 border-b border-line flex justify-center">
+<img src="logo.jpeg" alt="VanStop Logo" class="w-full h-auto object-contain max-h-12" />
 </div>
 
 <div class="mt-5 flex-1 space-y-1 text-[14px] font-medium">
@@ -136,9 +130,8 @@ html, body { min-height: 100%; background: #fff8f6; -webkit-tap-highlight-color:
 
 <!-- Header para Mobile -->
 <header class="lg:hidden fixed top-0 left-0 right-0 h-16 z-50 glass rounded-none px-4 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-signal">directions_bus</span>
-<span class="font-bold text-signal">VanStop</span>
+<div class="flex items-center">
+<img src="logo.jpeg" alt="VanStop Logo" class="h-8 w-auto object-contain" />
 </div>
 <div class="flex items-center gap-2">
 <button id="btn-settings-mobile" class="w-9 h-9 rounded-lg flex items-center justify-center text-textMuted hover:text-textMain active:bg-primary/10 transition-colors">

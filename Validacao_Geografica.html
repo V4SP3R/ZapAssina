@@ -77,7 +77,9 @@ body { background: #fff8f6; }
 
 <!-- TopNavBar para Mobile -->
 <nav class="fixed top-0 left-0 w-full flex justify-between items-center px-6 h-14 glass-card z-40 lg:hidden">
-    <div class="font-bold text-primary">VanStop</div>
+    <div class="flex items-center">
+        <img src="logo.jpeg" alt="VanStop Logo" class="h-6 w-auto object-contain" />
+    </div>
     <div class="flex items-center gap-4">
         <div class="w-2 h-2 rounded-full bg-primary pulse-dot"></div>
         <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
@@ -87,14 +89,8 @@ body { background: #fff8f6; }
 
 <!-- SideNavBar para Desktop -->
 <nav class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-4 pb-8 bg-surface-container-highest border-r border-outline-variant w-64 z-50">
-    <div class="px-6 mb-8 flex items-center gap-3">
-        <div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined">directions_bus</span>
-        </div>
-        <div>
-            <div class="text-lg font-bold text-emerald-900 leading-none">VanStop</div>
-            <div class="text-stone-600 text-xs font-semibold uppercase tracking-wider mt-1.5">Módulo Motorista</div>
-        </div>
+    <div class="px-6 mb-8">
+        <img src="logo.jpeg" alt="VanStop Logo" class="w-full h-auto object-contain max-h-12" />
     </div>
     <div class="flex-1 px-4 space-y-1">
         <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors text-sm font-medium" href="/">

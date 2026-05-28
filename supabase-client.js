@@ -172,7 +172,7 @@ window.vanStopApi = {
         const client = await getSupabase();
         const { data, error } = await client
             .from("mensalidades")
-            .select("*, alunos(*)")
+            .select("*, alunos(*, responsaveis(*))")
             .order("data_vencimento", { ascending: false });
         if (error) {
             console.error("Erro ao buscar mensalidades:", error);

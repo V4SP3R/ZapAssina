@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-
-<html class="h-full antialiased" lang="pt-BR"><head>
+<html class="h-full antialiased" lang="pt-BR">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ZapAssina - Triagem de Passageiros</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Triagem de Passageiros - VanStop</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-      tailwind.config = {
+    tailwind.config = {
         darkMode: "class",
         theme: {
-          extend: {
-            "colors": {
+            extend: {
+                colors: {
                     "surface-variant": "#e9e1df",
                     "surface-container-highest": "#e9e1df",
                     "on-primary-fixed-variant": "#0b513d",
@@ -61,14 +60,14 @@
                     "background": "#fff8f6",
                     "tertiary": "#003431",
                     "primary-fixed-dim": "#95d3ba"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "spacing": {
+                },
+                borderRadius: {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.75rem",
+                    "xl": "1rem",
+                    "full": "9999px"
+                },
+                spacing: {
                     "lg": "24px",
                     "xs": "4px",
                     "gutter": "16px",
@@ -77,367 +76,390 @@
                     "md": "16px",
                     "margin": "24px",
                     "base": "4px"
-            },
-            "fontFamily": {
-                    "display-lg": ["Inter"],
-                    "title-sm": ["Inter"],
-                    "numeric-data": ["Inter"],
-                    "headline-md": ["Inter"],
-                    "label-caps": ["Inter"],
-                    "body-dense": ["Inter"],
-                    "body-base": ["Inter"]
-            },
-            "fontSize": {
-                    "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                    "title-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
-                    "numeric-data": ["14px", { "lineHeight": "1.0", "fontWeight": "600" }],
-                    "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-                    "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "700" }],
-                    "body-dense": ["14px", { "lineHeight": "1.4", "fontWeight": "400" }],
-                    "body-base": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                },
+                fontFamily: {
+                    sans: ["Inter", "sans-serif"]
+                }
             }
-          }
         }
-      }
-    </script>
+    }
+</script>
+<style>
+html, body { min-height: 100%; background: #fff8f6; }
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+}
+</style>
 </head>
-<body class="bg-background text-on-background h-full font-body-base text-body-base">
-<!-- TopNavBar -->
-<nav class="fixed top-0 left-0 w-full flex justify-between items-center px-6 h-14 bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-md border-b border-stone-200 dark:border-stone-800 z-40 lg:hidden">
-<div class="font-sans text-lg font-black tracking-tighter text-emerald-900 dark:text-emerald-50">ZapAssina</div>
-<div class="flex items-center gap-4 text-emerald-800 dark:text-emerald-400 font-sans text-sm tracking-tight">
-<span class="material-symbols-outlined hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors active:opacity-80 duration-150 cursor-pointer p-1 rounded">notifications</span>
-<span class="material-symbols-outlined hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors active:opacity-80 duration-150 cursor-pointer p-1 rounded">wifi_tethering</span>
-<span class="material-symbols-outlined hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors active:opacity-80 duration-150 cursor-pointer p-1 rounded">help_outline</span>
-<span class="font-bold border-b-2 border-emerald-700 pb-1">Em Rota</span>
-</div>
-</nav>
-<!-- SideNavBar -->
-<nav class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-4 pb-8 bg-stone-50 dark:bg-stone-950 border-r w-64 border-stone-200 dark:border-stone-800 z-40">
-<div class="px-6 mb-8 flex items-center gap-3">
-<img alt="Driver Avatar" class="w-10 h-10 rounded-full border border-stone-200" data-alt="professional headshot of a middle-aged male driver with a slight smile wearing a dark polo shirt against a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAvRfPgTuHpziEgmFv4n0ni1FMMjl94sLKsH-sRN0mM6YbKCM1GC6EVKw984D35Ns5Uq7hJgXtujGwo5U-WElYpojtXlRnlc20eQM8n8kANrjbGyix2MjgzVrQveHB67Z8FLdZLxWmqagNn1fI5Dpx-soW9UdiwHXFO7esVDZy6WVsCwV76oWBqxP7F6CTS_Rzhot3l2s8xFkC0WPRRcLy9sk3a6_AWA7HH5NKYveek8xD-xWQoyWKPoI8kNnr69twa7fC8wOdCBSf"/>
-<div>
-<div class="text-xl font-bold text-emerald-900 dark:text-emerald-100 font-display-lg text-title-sm">ZapAssina</div>
-<div class="text-stone-600 dark:text-stone-400 font-sans text-[13px] font-medium leading-none mt-1">Módulo Motorista</div>
-</div>
-</div>
-<ul class="flex-1 space-y-1 px-3">
-<li>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all font-sans text-[13px] font-medium leading-none focus-within:ring-1 focus-within:ring-emerald-500" href="Dashboard_Operacional.html">
-<span class="material-symbols-outlined text-[20px]">dashboard</span>
-                    Dashboard
-                </a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all font-sans text-[13px] font-medium leading-none focus-within:ring-1 focus-within:ring-emerald-500" href="Validacao_Geografica.html">
-<span class="material-symbols-outlined text-[20px]">route</span>
-                    Rotas
-                </a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 text-emerald-900 dark:text-emerald-300 border-r-4 border-emerald-700 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all font-sans text-[13px] font-medium leading-none focus-within:ring-1 focus-within:ring-emerald-500" href="Triagem_de_Passageiros.html">
-<span class="material-symbols-outlined text-[20px]">groups</span>
-                    Passageiros
-                </a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all font-sans text-[13px] font-medium leading-none focus-within:ring-1 focus-within:ring-emerald-500" href="Motor_Financeiro.html">
-<span class="material-symbols-outlined text-[20px]">payments</span>
-                    Financeiro
-                </a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all font-sans text-[13px] font-medium leading-none focus-within:ring-1 focus-within:ring-emerald-500" href="Despacho_Tatico.html">
-<span class="material-symbols-outlined text-[20px]">inventory_2</span>
-                    Logística
-                </a>
-</li>
-</ul>
-<ul class="space-y-1 px-3 mt-auto border-t border-stone-200 dark:border-stone-800 pt-4">
-<li>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all font-sans text-[13px] font-medium leading-none focus-within:ring-1 focus-within:ring-emerald-500" href="#">
-<span class="material-symbols-outlined text-[20px]">settings</span>
-                    Configurações
-                </a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all font-sans text-[13px] font-medium leading-none focus-within:ring-1 focus-within:ring-emerald-500" href="#">
-<span class="material-symbols-outlined text-[20px]">logout</span>
-                    Sair
-                </a>
-</li>
-</ul>
-</nav>
-<!-- Main Content Canvas -->
-<main class="lg:pl-64 pt-14 lg:pt-0 min-h-screen">
-<div class="p-margin lg:p-xl max-w-7xl mx-auto space-y-lg">
-<!-- Page Header -->
-<header class="flex flex-col md:flex-row md:items-center justify-between gap-md border-b border-surface-variant pb-md">
-<div>
-<h1 class="font-headline-md text-headline-md text-on-surface">Aquisição e Triagem de Passageiros</h1>
-<p class="font-body-dense text-body-dense text-on-surface-variant mt-xs">Análise de novas solicitações e impacto na rota atual.</p>
-</div>
-<!-- Capacity Preview Card -->
-<div class="bg-surface-container border border-surface-variant rounded-lg p-md flex items-center gap-md min-w-[280px]">
-<div class="flex-1">
-<div class="font-label-caps text-label-caps text-on-surface-variant mb-xs uppercase">Capacidade da Van</div>
-<div class="flex items-end gap-xs">
-<span class="font-numeric-data text-numeric-data text-on-surface text-xl">18</span>
-<span class="font-body-dense text-body-dense text-on-surface-variant mb-0.5">/ 20 Vagas</span>
-</div>
-<div class="w-full bg-surface-variant h-2 rounded-full mt-sm overflow-hidden">
-<div class="bg-primary h-full rounded-full" style="width: 90%;"></div>
-</div>
-</div>
-<div class="w-px h-10 bg-surface-variant mx-2"></div>
-<div class="text-center">
-<div class="font-label-caps text-label-caps text-on-surface-variant mb-xs uppercase">Impacto</div>
-<div class="font-numeric-data text-numeric-data text-primary">+1 Pendente</div>
-</div>
-</div>
-</header>
-<!-- Grid Layout -->
-<div class="grid grid-cols-1 xl:grid-cols-12 gap-lg items-start">
-<!-- List Panel -->
-<div class="xl:col-span-5 space-y-md">
-<div class="flex items-center justify-between mb-sm">
-<h2 class="font-title-sm text-title-sm text-on-surface">Solicitações Pendentes (3)</h2>
-<span class="material-symbols-outlined text-on-surface-variant text-[20px] cursor-pointer hover:text-primary transition-colors">filter_list</span>
-</div>
-<!-- Card 1 (Active) -->
-<div class="bg-surface-container-lowest border border-primary rounded-lg p-md relative overflow-hidden ring-1 ring-primary-container/20">
-<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
-<div class="flex justify-between items-start mb-sm">
-<div>
-<h3 class="font-title-sm text-title-sm text-on-surface">Lucas Silva</h3>
-<p class="font-body-dense text-body-dense text-on-surface-variant">Responsável: Mariana Silva (Mãe)</p>
-</div>
-<span class="bg-surface-container text-on-surface-variant font-label-caps text-label-caps px-2 py-1 rounded border border-surface-variant uppercase flex items-center gap-xs">
-<span class="material-symbols-outlined text-[14px]">school</span>
-                                Colégio Objetivo
-                            </span>
-</div>
-<div class="flex items-center gap-sm text-on-surface-variant mb-md border-y border-surface-container py-sm bg-surface-container/50 -mx-md px-md">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="font-body-dense text-body-dense">Vila Mariana • 850m da rota atual</span>
-</div>
-<div class="flex gap-sm">
-<button class="flex-1 bg-primary text-on-primary border border-primary font-body-dense text-body-dense py-2 rounded-DEFAULT hover:bg-primary/90 transition-colors flex items-center justify-center gap-xs">
-<span class="material-symbols-outlined text-[18px]">check_circle</span>
-                                Aprovar
-                            </button>
-<button class="flex-1 bg-surface-container border border-surface-variant text-on-surface font-body-dense text-body-dense py-2 rounded-DEFAULT hover:bg-surface-variant transition-colors flex items-center justify-center gap-xs">
-<span class="material-symbols-outlined text-[18px]">hourglass_empty</span>
-                                Lista de Espera
-                            </button>
-<button class="w-10 bg-surface-container border border-surface-variant text-error font-body-dense text-body-dense py-2 rounded-DEFAULT hover:bg-error-container hover:border-error-container transition-colors flex items-center justify-center">
-<span class="material-symbols-outlined text-[18px]">close</span>
-</button>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="bg-surface-container-lowest border border-surface-variant rounded-lg p-md opacity-80 hover:opacity-100 transition-opacity">
-<div class="flex justify-between items-start mb-sm">
-<div>
-<h3 class="font-title-sm text-title-sm text-on-surface">Beatriz Costa</h3>
-<p class="font-body-dense text-body-dense text-on-surface-variant">Responsável: Carlos Costa (Pai)</p>
-</div>
-<span class="bg-surface-container text-on-surface-variant font-label-caps text-label-caps px-2 py-1 rounded border border-surface-variant uppercase flex items-center gap-xs">
-<span class="material-symbols-outlined text-[14px]">school</span>
-                                Colégio Bandeirantes
-                            </span>
-</div>
-<div class="flex items-center gap-sm text-on-surface-variant mb-md border-y border-surface-container py-sm bg-surface-container/50 -mx-md px-md">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="font-body-dense text-body-dense text-error">Paraíso • 2.4km da rota atual</span>
-</div>
-<div class="flex gap-sm">
-<button class="flex-1 bg-surface-container border border-surface-variant text-on-surface font-body-dense text-body-dense py-2 rounded-DEFAULT hover:bg-surface-variant transition-colors flex items-center justify-center gap-xs">
-                                Avaliar Rota
-                            </button>
-</div>
-</div>
-</div>
-<!-- Map Panel -->
-<div class="xl:col-span-7 bg-surface-container-lowest border border-surface-variant rounded-lg overflow-hidden flex flex-col h-[600px]">
-<div class="p-md border-b border-surface-variant bg-surface-container flex justify-between items-center">
-<h2 class="font-title-sm text-title-sm text-on-surface flex items-center gap-sm">
-<span class="material-symbols-outlined">map</span>
-                            Validação Geográfica
-                        </h2>
-<div class="flex gap-4 font-body-dense text-body-dense text-on-surface-variant">
-<span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-primary block"></span> Rota Atual</span>
-<span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full border-2 border-primary block"></span> Solicitação (Lucas)</span>
-</div>
-</div>
-<div class="flex-1 relative bg-surface-variant overflow-hidden">
-<!-- Google Maps Area -->
-<iframe id="passenger-google-map" title="Google Maps - validação geográfica de passageiros" class="w-full h-full border-0 grayscale-[15%] contrast-[1.02]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://www.google.com/maps?q=-23.5892,-46.6340&z=14&hl=pt-BR&output=embed"></iframe>
-<div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-primary/10"></div>
-<div class="absolute left-md top-md bg-surface-container-lowest/95 border border-surface-variant rounded-lg shadow-sm px-3 py-2 flex items-center gap-2">
-<span id="location-status-dot" class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
-<div class="leading-tight">
-<div id="location-status-text" class="font-label-caps text-[10px] text-on-surface-variant uppercase">Preparando Google Maps</div>
-<div id="location-cache-text" class="font-body-dense text-[12px] text-on-surface">Localização ainda não salva</div>
-</div>
-</div>
-<div class="absolute right-md top-md flex flex-col gap-2">
-<button id="btn-refresh-location" class="bg-surface-container-lowest/95 border border-surface-variant text-primary rounded-DEFAULT px-3 py-2 shadow-sm hover:bg-surface-container transition-colors flex items-center gap-xs font-body-dense text-[12px]">
-<span class="material-symbols-outlined text-[18px]">my_location</span>
-                                Atualizar
-                            </button>
-<a id="btn-open-google-maps" class="bg-surface-container-lowest/95 border border-surface-variant text-on-surface rounded-DEFAULT px-3 py-2 shadow-sm hover:bg-surface-container transition-colors flex items-center gap-xs font-body-dense text-[12px]" href="https://www.google.com/maps?q=-23.5892,-46.6340" target="_blank" rel="noopener">
-<span class="material-symbols-outlined text-[18px]">open_in_new</span>
-                                Abrir Maps
-                            </a>
-</div>
-<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
-<path d="M 9 88 Q 26 58 48 56 T 88 19" fill="none" stroke="#003527" stroke-dasharray="4,3" stroke-linecap="round" stroke-width="0.8"></path>
-</svg>
-<div class="absolute top-[42%] left-[60%] -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-<div class="w-4 h-4 bg-primary rounded-full shadow-sm ring-4 ring-primary/20"></div>
-</div>
-<div class="absolute top-[35%] left-[55%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
-<div class="bg-surface-container-lowest border border-primary rounded px-2 py-1 mb-1 text-center shadow-sm">
-<div class="font-label-caps text-label-caps text-on-surface">Lucas S.</div>
-<div class="font-numeric-data text-numeric-data text-primary">+850m</div>
-</div>
-<div class="w-4 h-4 rounded-full border-2 border-primary bg-surface-container-lowest shadow-sm"></div>
-</div>
-</div>
-<div class="p-md bg-surface-container-lowest border-t border-surface-variant flex justify-between items-center">
-<div class="flex flex-col">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Impacto Estimado</span>
-<span class="font-numeric-data text-numeric-data text-on-surface">+12 min no trajeto total</span>
-</div>
-<button class="bg-surface-container border border-surface-variant text-on-surface font-body-dense text-body-dense px-4 py-2 rounded-DEFAULT hover:bg-surface-variant transition-colors flex items-center justify-center gap-xs">
-<span class="material-symbols-outlined text-[18px]">alt_route</span>
-                            Otimizar Trajeto
-                        </button>
-</div>
-</div>
-</div>
-</div>
-</main>
-<script>
-const LOCATION_STORAGE_KEY = "zapassina_driver_saved_location";
-const LOCATION_PROMPTED_KEY = "zapassina_driver_location_prompted";
-const DEFAULT_PASSENGER_MAP = {
-    lat: -23.5892,
-    lng: -46.634,
-    label: "Rota escolar em São Paulo"
-};
+<body class="bg-background text-on-background h-full font-sans pb-20 lg:pb-0">
 
-function getSavedLocation() {
+<!-- TopNavBar para Mobile -->
+<nav class="fixed top-0 left-0 w-full flex justify-between items-center px-6 h-14 bg-stone-50/90 backdrop-blur-md border-b border-stone-200 z-40 lg:hidden">
+    <div class="font-bold text-emerald-900">VanStop</div>
+    <div class="flex items-center gap-4 text-emerald-800 text-sm">
+        <span class="material-symbols-outlined cursor-pointer hover:bg-stone-100 p-1 rounded">notifications</span>
+        <span class="font-bold border-b-2 border-emerald-700 pb-0.5">Triagem</span>
+    </div>
+</nav>
+
+<!-- SideNavBar para Desktop -->
+<nav class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-4 pb-8 bg-stone-50 border-r w-64 border-stone-200 z-40">
+    <div class="px-6 mb-8 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined">directions_bus</span>
+        </div>
+        <div>
+            <div class="text-lg font-bold text-emerald-900 leading-none">VanStop</div>
+            <div class="text-stone-600 text-xs font-semibold uppercase tracking-wider mt-1.5">Módulo Motorista</div>
+        </div>
+    </div>
+    <ul class="flex-1 space-y-1 px-3">
+        <li>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-[13px] font-medium" href="/">
+                <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-[13px] font-medium" href="Validacao_Geografica.html">
+                <span class="material-symbols-outlined text-[20px]">route</span>
+                Rotas
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-50 text-emerald-900 border-r-4 border-emerald-700 font-semibold text-[13px]" href="Triagem_de_Passageiros.html">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+                Passageiros
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-[13px] font-medium" href="Motor_Financeiro.html">
+                <span class="material-symbols-outlined text-[20px]">payments</span>
+                Financeiro
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-[13px] font-medium" href="Despacho_Tatico.html">
+                <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+                Logística
+            </a>
+        </li>
+    </ul>
+    <ul class="space-y-1 px-3 mt-auto border-t border-stone-200 pt-4">
+        <li>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-[13px] font-medium cursor-pointer" id="btn-settings-desktop">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                Configurações
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-[13px] font-medium" href="#">
+                <span class="material-symbols-outlined text-[20px]">logout</span>
+                Sair
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Conteúdo Principal -->
+<main class="lg:pl-64 pt-14 lg:pt-0 min-h-screen">
+    <div class="p-margin lg:p-xl max-w-7xl mx-auto space-y-lg">
+        <!-- Cabeçalho de Página -->
+        <header class="flex flex-col md:flex-row md:items-center justify-between gap-md border-b border-surface-variant pb-md">
+            <div>
+                <h1 class="text-2xl lg:text-3xl font-bold text-on-surface">Aquisição e Triagem de Passageiros</h1>
+                <p class="text-sm text-on-surface-variant mt-1.5">Análise geométrica de novas solicitações e impacto de busca no veículo.</p>
+            </div>
+            <!-- Capacidade da Van Dinâmica -->
+            <div class="bg-surface-container border border-surface-variant rounded-lg p-md flex items-center gap-md min-w-[280px]">
+                <div class="flex-1">
+                    <div class="text-[10px] font-bold tracking-wider text-on-surface-variant mb-1 uppercase">Capacidade da Van</div>
+                    <div class="flex items-end gap-1">
+                        <span class="text-xl font-bold text-on-surface" id="capacity-current">--</span>
+                        <span class="text-xs text-on-surface-variant mb-0.5">/ 20 Vagas</span>
+                    </div>
+                    <div class="w-full bg-surface-variant h-2 rounded-full mt-2 overflow-hidden">
+                        <div id="capacity-bar" class="bg-primary h-full rounded-full" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <div class="w-px h-10 bg-outline/25 mx-2"></div>
+                <div class="text-center">
+                    <div class="text-[10px] font-bold tracking-wider text-on-surface-variant mb-1 uppercase">Impacto</div>
+                    <div class="text-xs font-bold text-primary" id="capacity-impact">-- pendentes</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Layout em Grid -->
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-lg items-start">
+            <!-- Painel Esquerdo: Lista de Solicitações -->
+            <div class="xl:col-span-5 space-y-md">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="font-semibold text-on-surface" id="requests-header">Solicitações Pendentes (--)</h2>
+                    <span class="material-symbols-outlined text-on-surface-variant text-[20px] cursor-pointer hover:text-primary transition-colors">filter_list</span>
+                </div>
+                <div id="requests-list" class="space-y-4">
+                    <div class="p-6 text-center text-xs text-on-surface-variant bg-surface-container rounded-lg">Carregando solicitações...</div>
+                </div>
+            </div>
+
+            <!-- Painel Direito: Validação em Mapa -->
+            <div class="xl:col-span-7 bg-surface-container-lowest border border-surface-variant rounded-lg overflow-hidden flex flex-col h-[520px] lg:h-[600px] shadow-sm">
+                <div class="p-md border-b border-surface-variant bg-surface-container flex justify-between items-center">
+                    <h2 class="font-semibold text-on-surface flex items-center gap-2 text-sm lg:text-base">
+                        <span class="material-symbols-outlined text-primary">map</span>
+                        Validação Geográfica de Rota
+                    </h2>
+                    <div class="hidden sm:flex gap-4 text-xs text-on-surface-variant font-medium">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-primary block"></span> Rota Atual</span>
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full border-2 border-primary bg-white block"></span> Novo Embarque</span>
+                    </div>
+                </div>
+                <div class="flex-1 relative bg-surface-variant overflow-hidden">
+                    <iframe id="passenger-google-map" title="Google Maps - validação geográfica de passageiros" class="w-full h-full border-0 grayscale-[15%] contrast-[1.02]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://www.google.com/maps?q=-23.5892,-46.6340&z=14&hl=pt-BR&output=embed"></iframe>
+                    <div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-primary/5"></div>
+                    <div class="absolute left-md top-md bg-white/95 border border-surface-variant rounded-lg shadow-sm px-3 py-2 flex items-center gap-2">
+                        <span id="location-status-dot" class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+                        <div class="leading-tight">
+                            <div id="location-status-text" class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Preparando Google Maps</div>
+                            <div id="location-cache-text" class="text-xs text-on-surface">Calculando distância...</div>
+                        </div>
+                    </div>
+                    <div class="absolute right-md top-md flex flex-col gap-2">
+                        <button id="btn-refresh-location" class="bg-white/95 border border-surface-variant text-primary rounded-lg px-3 py-2 shadow-sm hover:bg-stone-50 transition-colors flex items-center gap-1 text-[11px] font-semibold">
+                            <span class="material-symbols-outlined text-[18px]">my_location</span>
+                            Minha Localização
+                        </button>
+                        <a id="btn-open-google-maps" class="bg-white/95 border border-surface-variant text-on-surface rounded-lg px-3 py-2 shadow-sm hover:bg-stone-50 transition-colors flex items-center gap-1 text-[11px] font-semibold" href="https://www.google.com/maps?q=-23.5892,-46.6340" target="_blank" rel="noopener">
+                            <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                            Abrir no Maps
+                        </a>
+                    </div>
+                </div>
+                <div class="p-md bg-surface-container-lowest border-t border-surface-variant flex justify-between items-center">
+                    <div class="flex flex-col">
+                        <span class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Impacto Estimado da Rota</span>
+                        <span class="text-sm font-semibold text-on-surface" id="impact-distance-text">+850m / +12 min no trajeto</span>
+                    </div>
+                    <a href="Validacao_Geografica.html" class="bg-surface-container border border-surface-variant text-on-surface font-semibold text-xs px-4 py-2.5 rounded-lg hover:bg-surface-variant transition-colors flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[18px]">alt_route</span>
+                        Simular no Trajeto Completo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Barra de Navegação Mobile -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full bg-white flex justify-around items-center h-16 z-50 border-t border-stone-200 px-2 shadow-lg">
+    <a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant" href="/">
+        <span class="material-symbols-outlined mb-1">dashboard</span>
+        <span class="text-[10px] font-medium leading-none">Dashboard</span>
+    </a>
+    <a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant" href="Validacao_Geografica.html">
+        <span class="material-symbols-outlined mb-1">route</span>
+        <span class="text-[10px] font-medium leading-none">Rotas</span>
+    </a>
+    <a class="flex flex-col items-center justify-center w-full h-full text-primary" href="Triagem_de_Passageiros.html">
+        <span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">groups</span>
+        <span class="text-[10px] font-semibold leading-none">Passag.</span>
+    </a>
+    <a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant" href="Motor_Financeiro.html">
+        <span class="material-symbols-outlined mb-1">payments</span>
+        <span class="text-[10px] font-medium leading-none">Financ.</span>
+    </a>
+</nav>
+
+<script src="supabase-client.js"></script>
+<script src="settings-modal.js"></script>
+<script>
+let pendingRequestsList = [];
+let selectedRequestIndex = 0;
+
+function toRadians(value) {
+    return value * Math.PI / 180;
+}
+
+function calculateDistanceKm(lat1, lng1, lat2, lng2) {
+    const earthRadius = 6371;
+    const dLat = toRadians(lat2 - lat1);
+    const dLng = toRadians(lng2 - lng1);
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * Math.sin(dLng / 2) ** 2;
+    return 2 * earthRadius * Math.asin(Math.sqrt(a));
+}
+
+async function handleApproval(index) {
+    const btn = document.getElementById(`btn-approve-${index}`);
+    if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">sync</span> Gravando...';
+    
     try {
-        const saved = localStorage.getItem(LOCATION_STORAGE_KEY);
-        return saved ? JSON.parse(saved) : null;
-    } catch (error) {
-        return null;
+        const req = pendingRequestsList[index];
+        await vanStopApi.approveSolicitacao(req);
+        alert(`Sucesso! ${req.nome_aluno} e responsável foram adicionados ao banco com sucesso.`);
+        window.location.reload();
+    } catch (e) {
+        console.error("Falha ao aprovar aluno:", e);
+        alert("Ocorreu um erro ao registrar a aprovação.");
+        if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span> Aprovar';
     }
 }
 
-function saveLocation(position) {
-    const coords = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-        accuracy: position.coords.accuracy,
-        savedAt: new Date().toISOString()
-    };
-
-    localStorage.setItem(LOCATION_STORAGE_KEY, JSON.stringify(coords));
-    localStorage.setItem(LOCATION_PROMPTED_KEY, "true");
-    return coords;
+async function handleStatusUpdate(index, newStatus) {
+    try {
+        const req = pendingRequestsList[index];
+        await vanStopApi.updateSolicitacaoStatus(req.id, newStatus);
+        alert(`Status da solicitação de ${req.nome_aluno} atualizado para: ${newStatus}`);
+        window.location.reload();
+    } catch (e) {
+        console.error("Falha ao atualizar solicitação:", e);
+        alert("Erro ao alterar status da solicitação.");
+    }
 }
 
-function buildGoogleMapsEmbedUrl(coords) {
-    return `https://www.google.com/maps?q=${coords.lat},${coords.lng}&z=15&hl=pt-BR&output=embed`;
-}
+function selectRequest(index) {
+    selectedRequestIndex = index;
+    const req = pendingRequestsList[index];
+    if (!req) return;
 
-function buildGoogleMapsOpenUrl(coords) {
-    return `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
-}
+    // Atualiza a visualização do iframe do mapa
+    const iframe = document.getElementById("passenger-google-map");
+    if (iframe) {
+        iframe.src = `https://www.google.com/maps?q=${req.lat},${req.lng}&z=15&hl=pt-BR&output=embed`;
+    }
+    
+    const openMaps = document.getElementById("btn-open-google-maps");
+    if (openMaps) {
+        openMaps.href = `https://www.google.com/maps?q=${req.lat},${req.lng}`;
+    }
 
-function updateLocationStatus(message, detail, tone = "default") {
+    // Calcula distância estimada com relação ao Colégio Central
+    const schoolLat = -23.58922;
+    const schoolLng = -46.634;
+    const dist = calculateDistanceKm(req.lat, req.lng, schoolLat, schoolLng);
+    
+    // Atualiza barra de status do mapa
     const statusText = document.getElementById("location-status-text");
     const cacheText = document.getElementById("location-cache-text");
     const statusDot = document.getElementById("location-status-dot");
-
-    if (statusText) statusText.textContent = message;
-    if (cacheText) cacheText.textContent = detail;
-    if (!statusDot) return;
-
-    statusDot.className = "w-2.5 h-2.5 rounded-full";
-    if (tone === "success") {
-        statusDot.classList.add("bg-primary");
-    } else if (tone === "error") {
-        statusDot.classList.add("bg-error");
-    } else {
-        statusDot.classList.add("bg-secondary", "animate-pulse");
-    }
-}
-
-function renderGoogleMap(coords, fromCache = false) {
-    const iframe = document.getElementById("passenger-google-map");
-    const openMaps = document.getElementById("btn-open-google-maps");
-    const accuracy = coords.accuracy ? `Precisão ${Math.round(coords.accuracy)}m` : coords.label;
-    const detail = fromCache ? `Localização salva permanentemente - ${accuracy}` : `Localização salva - ${accuracy}`;
-
-    if (iframe) iframe.src = buildGoogleMapsEmbedUrl(coords);
-    if (openMaps) openMaps.href = buildGoogleMapsOpenUrl(coords);
-
-    updateLocationStatus("Google Maps ativo", detail, "success");
-}
-
-function requestLocation(force = false) {
-    const saved = getSavedLocation();
-
-    if (saved && !force) {
-        renderGoogleMap(saved, true);
-        return;
+    if (statusText) statusText.textContent = `Avaliando ${req.nome_aluno}`;
+    if (cacheText) cacheText.textContent = `${req.endereco_embarque}`;
+    if (statusDot) {
+        statusDot.className = "w-2.5 h-2.5 rounded-full bg-primary";
     }
 
-    if (!navigator.geolocation) {
-        renderGoogleMap(DEFAULT_PASSENGER_MAP, false);
-        updateLocationStatus("Geolocalização indisponível", "Usando centro padrão da rota", "error");
-        return;
+    // Atualiza impacto estimado no painel inferior
+    const impactText = document.getElementById("impact-distance-text");
+    if (impactText) {
+        const delay = Math.round(dist * 5); // Simula 5 minutos por km
+        impactText.textContent = `+${Math.round(dist * 1000)}m • +${delay} min de desvio estimado`;
     }
 
-    const alreadyPrompted = localStorage.getItem(LOCATION_PROMPTED_KEY) === "true";
-    if (alreadyPrompted && !force) {
-        renderGoogleMap(DEFAULT_PASSENGER_MAP, false);
-        updateLocationStatus("Permissão já solicitada", "Use Atualizar para pedir novamente", "default");
-        return;
-    }
-
-    updateLocationStatus("Solicitando permissão", "O navegador exibirá o pedido apenas uma vez", "default");
-
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            const coords = saveLocation(position);
-            renderGoogleMap(coords, false);
-        },
-        () => {
-            localStorage.setItem(LOCATION_PROMPTED_KEY, "true");
-            renderGoogleMap(DEFAULT_PASSENGER_MAP, false);
-            updateLocationStatus("Permissão não concedida", "Usando centro padrão da rota", "error");
-        },
-        {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 86400000
+    // Renderiza a borda verde ativa no card selecionado
+    document.querySelectorAll(".request-card").forEach((card, idx) => {
+        if (idx === index) {
+            card.classList.add("border-primary", "ring-1", "ring-primary-container/25");
+            card.classList.remove("border-surface-variant");
+        } else {
+            card.classList.remove("border-primary", "ring-1", "ring-primary-container/25");
+            card.classList.add("border-surface-variant");
         }
-    );
+    });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    requestLocation(false);
+document.addEventListener("DOMContentLoaded", async () => {
+    // Escuta cliques no botão de configurações para abrir o modal
+    const openSettings = () => {
+        const event = new CustomEvent("open-vanstop-settings");
+        window.dispatchEvent(event);
+    };
+    const btnDesktop = document.getElementById("btn-settings-desktop");
+    if (btnDesktop) btnDesktop.addEventListener("click", openSettings);
 
-    const refreshButton = document.getElementById("btn-refresh-location");
-    if (refreshButton) {
-        refreshButton.addEventListener("click", () => requestLocation(true));
+    try {
+        const [alunos, solicitacoes] = await Promise.all([
+            vanStopApi.getAlunos(),
+            vanStopApi.getSolicitacoes()
+        ]);
+
+        // 1. Renderiza indicador de Capacidade da Van
+        const maxCapacity = 20;
+        const currentCount = alunos.filter(a => a.status === 'ativo').length;
+        const currentCapacityEl = document.getElementById("capacity-current");
+        const capacityBarEl = document.getElementById("capacity-bar");
+        if (currentCapacityEl) currentCapacityEl.textContent = String(currentCount);
+        if (capacityBarEl) {
+            const perc = Math.min(100, (currentCount / maxCapacity) * 100);
+            capacityBarEl.style.width = `${perc}%`;
+        }
+
+        // 2. Filtra solicitações pendentes de triagem
+        pendingRequestsList = solicitacoes.filter(s => s.status === 'pendente');
+        const headerEl = document.getElementById("requests-header");
+        if (headerEl) headerEl.textContent = `Solicitações Pendentes (${pendingRequestsList.length})`;
+
+        const impactEl = document.getElementById("capacity-impact");
+        if (impactEl) impactEl.textContent = `+${pendingRequestsList.length} Pendentes`;
+
+        // 3. Renderiza a lista de cards de solicitações
+        const listContainer = document.getElementById("requests-list");
+        if (listContainer) {
+            if (pendingRequestsList.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="bg-white border border-surface-variant rounded-xl p-8 text-center flex flex-col items-center justify-center space-y-3">
+                        <span class="material-symbols-outlined text-[48px] text-primary">check_circle</span>
+                        <h3 class="font-semibold text-on-surface text-base">Tudo Organizado</h3>
+                        <p class="text-xs text-on-surface-variant max-w-xs">Nenhuma nova solicitação aguardando triagem geográfica no momento.</p>
+                    </div>
+                `;
+                // Se não há pendentes, limpa os campos do mapa
+                const impactText = document.getElementById("impact-distance-text");
+                if (impactText) impactText.textContent = "Nenhum impacto de desvio a ser calculado";
+                updateLocationStatus("Sem solicitações", "Aguardando novos cadastros", "default");
+            } else {
+                listContainer.innerHTML = pendingRequestsList.map((req, index) => `
+                    <div class="request-card bg-white border border-surface-variant rounded-xl p-4 relative overflow-hidden transition-all cursor-pointer hover:shadow-sm" onclick="selectRequest(${index})">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-bold text-on-surface text-sm lg:text-base">${req.nome_aluno}</h3>
+                                <p class="text-xs text-on-surface-variant mt-0.5">Resp: ${req.nome_responsavel}</p>
+                            </div>
+                            <span class="bg-surface-container text-on-surface-variant text-[10px] font-bold px-2.5 py-1 rounded border border-surface-variant uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px]">school</span>
+                                ${req.escola}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2 text-on-surface-variant mb-4 border-y border-stone-100 py-2 bg-stone-50/50 -mx-4 px-4 text-xs">
+                            <span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+                            <span class="font-medium truncate flex-1">${req.endereco_embarque}</span>
+                        </div>
+                        <div class="flex gap-2" onclick="event.stopPropagation()">
+                            <button id="btn-approve-${index}" onclick="handleApproval(${index})" class="flex-1 bg-primary text-white border border-primary text-xs font-semibold py-2 rounded-lg hover:bg-primary/95 transition-colors flex items-center justify-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                Aprovar
+                            </button>
+                            <button onclick="handleStatusUpdate(${index}, 'espera')" class="flex-1 bg-surface-container border border-surface-variant text-on-surface text-xs font-semibold py-2 rounded-lg hover:bg-surface-variant transition-colors flex items-center justify-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">hourglass_empty</span>
+                                Espera
+                            </button>
+                            <button onclick="handleStatusUpdate(${index}, 'rejeitada')" class="w-10 bg-surface-container border border-surface-variant text-error font-semibold py-2 rounded-lg hover:bg-red-50 hover:border-red-200 transition-colors flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[18px]">close</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join("");
+
+                // Seleciona a primeira solicitação por padrão
+                selectRequest(0);
+            }
+        }
+    } catch (e) {
+        console.error("Erro ao carregar triagem:", e);
     }
 });
 </script>
-<script src="settings-modal.js"></script>
-</body></html>
+</body>
+</html>

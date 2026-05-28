@@ -1,533 +1,386 @@
 <!DOCTYPE html>
-
-<html lang="pt-BR"><head>
+<html lang="pt-BR">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Despacho e Logística Tática - ZapAssina</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Despacho e Logística Tática - VanStop</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
-        .material-symbols-outlined {
-            font-family: 'Material Symbols Outlined';
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px;
-            line-height: 1;
-            letter-spacing: normal;
-            text-transform: none;
-            display: inline-block;
-            white-space: nowrap;
-            word-wrap: normal;
-            direction: ltr;
-            -webkit-font-feature-settings: 'liga';
-            -webkit-font-smoothing: antialiased;
-        }
-    </style>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-variant": "#e9e1df",
-                        "surface-container-highest": "#e9e1df",
-                        "on-primary-fixed-variant": "#0b513d",
-                        "surface-container-high": "#efe6e4",
-                        "primary-container": "#064e3b",
-                        "secondary-container": "#e5e2dd",
-                        "surface-container-low": "#fbf2f0",
-                        "on-surface-variant": "#404944",
-                        "on-tertiary": "#ffffff",
-                        "on-secondary-fixed-variant": "#474743",
-                        "surface-container-lowest": "#ffffff",
-                        "on-surface": "#1e1b1a",
-                        "secondary-fixed": "#e5e2dd",
-                        "on-tertiary-fixed-variant": "#00504b",
-                        "surface-bright": "#fff8f6",
-                        "inverse-primary": "#95d3ba",
-                        "surface-tint": "#2b6954",
-                        "primary": "#003527",
-                        "on-primary": "#ffffff",
-                        "surface-container": "#f5ecea",
-                        "on-background": "#1e1b1a",
-                        "on-secondary-fixed": "#1c1c19",
-                        "outline": "#707974",
-                        "inverse-surface": "#342f2e",
-                        "tertiary-fixed": "#abefe8",
-                        "error": "#ba1a1a",
-                        "tertiary-container": "#004d49",
-                        "secondary-fixed-dim": "#c9c6c2",
-                        "on-primary-fixed": "#002117",
-                        "surface": "#fff8f6",
-                        "tertiary-fixed-dim": "#8fd3cc",
-                        "on-error": "#ffffff",
-                        "inverse-on-surface": "#f8efed",
-                        "on-error-container": "#93000a",
-                        "on-primary-container": "#80bea6",
-                        "error-container": "#ffdad6",
-                        "outline-variant": "#bfc9c3",
-                        "on-secondary": "#ffffff",
-                        "surface-dim": "#e1d8d6",
-                        "secondary": "#5f5e5b",
-                        "on-tertiary-container": "#7abdb7",
-                        "primary-fixed": "#b0f0d6",
-                        "on-secondary-container": "#656461",
-                        "on-tertiary-fixed": "#00201e",
-                        "background": "#fff8f6",
-                        "tertiary": "#003431",
-                        "primary-fixed-dim": "#95d3ba"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "lg": "24px",
-                        "xs": "4px",
-                        "gutter": "16px",
-                        "sm": "8px",
-                        "xl": "32px",
-                        "md": "16px",
-                        "margin": "24px",
-                        "base": "4px"
-                    },
-                    "fontFamily": {
-                        "display-lg": ["Inter", "sans-serif"],
-                        "title-sm": ["Inter", "sans-serif"],
-                        "numeric-data": ["Inter", "sans-serif"],
-                        "headline-md": ["Inter", "sans-serif"],
-                        "label-caps": ["Inter", "sans-serif"],
-                        "body-dense": ["Inter", "sans-serif"],
-                        "body-base": ["Inter", "sans-serif"]
-                    },
-                    "fontSize": {
-                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "title-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
-                        "numeric-data": ["14px", { "lineHeight": "1.0", "fontWeight": "600" }],
-                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "700" }],
-                        "body-dense": ["14px", { "lineHeight": "1.4", "fontWeight": "400" }],
-                        "body-base": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-background text-on-background min-h-screen flex flex-col lg:flex-row antialiased">
-<!-- TopNavBar (Mobile Anchor) -->
-<nav class="fixed top-0 left-0 w-full flex justify-between items-center px-6 h-14 bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-md docked full-width border-b z-40 border-stone-200 dark:border-stone-800 lg:hidden">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-emerald-800 dark:text-emerald-400">route</span>
-<span class="text-lg font-black tracking-tighter text-emerald-900 dark:text-emerald-50">ZapAssina</span>
-</div>
-<div class="flex items-center gap-md">
-<span class="text-emerald-800 dark:text-emerald-400 font-sans text-sm tracking-tight font-bold">Em Rota</span>
-<div class="flex items-center gap-xs">
-<span class="material-symbols-outlined text-stone-500 dark:text-stone-400" data-icon="notifications">notifications</span>
-<span class="material-symbols-outlined text-stone-500 dark:text-stone-400" data-icon="wifi_tethering">wifi_tethering</span>
-</div>
-</div>
-</nav>
-<!-- SideNavBar (Desktop Anchor) -->
-<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-4 pb-8 w-64 border-r border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 z-50">
-<div class="px-6 mb-8 flex flex-col gap-sm">
-<div class="flex items-center gap-sm">
-<img alt="Driver Avatar" class="w-10 h-10 rounded-full border border-outline-variant" data-alt="professional portrait headshot of a male driver wearing a dark green polo shirt, neutral lighting, solid background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8SJ_se6RLflpbs6V1dgm0uqsel7UJjwelGPl-lizCI4UQPKrnknfsGgqmCQ-0bd_WS47PTRezpaDfQdNN89Vh18D7CywKVum2NWH8FLCmd0FMmyZ0EjfWpuhs97fvotNMxso-RN_tSmV7FaT9lDx5hlPeThbMMSLDBj2QkOrAKd_Nm-TdcPJV0_4xfi497A5rGzr9lBELWkPZeBahDY9Aum4JOkvmem1A8KscLmJM1p5ZlTqlJK-kfpNQyq7LlUcTOYcr8si05AX0"/>
-<div>
-<h1 class="text-xl font-bold text-emerald-900 dark:text-emerald-100">ZapAssina</h1>
-<p class="font-sans text-[13px] font-medium leading-none text-stone-500">Módulo Motorista</p>
-</div>
-</div>
-</div>
-<nav class="flex-1 flex flex-col gap-xs px-2 font-sans text-[13px] font-medium leading-none text-emerald-700 dark:text-emerald-500">
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all focus-within:ring-1 focus-within:ring-emerald-500" href="Dashboard_Operacional.html">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-                Dashboard
-            </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all focus-within:ring-1 focus-within:ring-emerald-500" href="Validacao_Geografica.html">
-<span class="material-symbols-outlined" data-icon="route">route</span>
-                Rotas
-            </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all focus-within:ring-1 focus-within:ring-emerald-500" href="Triagem_de_Passageiros.html">
-<span class="material-symbols-outlined" data-icon="groups">groups</span>
-                Passageiros
-            </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all focus-within:ring-1 focus-within:ring-emerald-500" href="Motor_Financeiro.html">
-<span class="material-symbols-outlined" data-icon="payments">payments</span>
-                Financeiro
-            </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 text-emerald-900 dark:text-emerald-300 border-r-4 border-emerald-700 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all focus-within:ring-1 focus-within:ring-emerald-500" href="Despacho_Tatico.html">
-<span class="material-symbols-outlined" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
-                Logística
-            </a>
-</nav>
-<div class="px-2 mt-auto flex flex-col gap-xs font-sans text-[13px] font-medium leading-none">
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-                Configurações
-            </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 hover:text-emerald-800 dark:hover:text-emerald-200 transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span>
-                Sair
-            </a>
-</div>
-</aside>
-<!-- Main Canvas -->
-<main class="flex-1 lg:ml-64 pt-14 lg:pt-0 flex flex-col h-screen overflow-hidden bg-surface-container pb-20 lg:pb-0">
-<!-- Header / Operational Cockpit -->
-<header class="bg-surface-container-lowest border-b border-outline-variant p-margin shrink-0 flex flex-col gap-md">
-<div class="flex justify-between items-start">
-<div>
-<div class="flex items-center gap-sm mb-xs">
-<span class="px-2 py-1 rounded bg-primary-container text-on-primary-container font-label-caps text-label-caps">EM ANDAMENTO</span>
-<span id="route-code" class="font-numeric-data text-numeric-data text-outline">Rota #402-A</span>
-</div>
-<h2 id="route-title" class="font-headline-md text-headline-md text-on-surface">Expresso da Manhã - Colégio Central</h2>
-<p id="route-description" class="font-body-dense text-body-dense text-outline mt-xs">Alunos que estão indo de manhã.</p>
-</div>
-<div class="text-right">
-<p id="route-time" class="font-title-sm text-title-sm text-primary">07:15 AM</p>
-<p id="route-target" class="font-body-dense text-body-dense text-outline">Meta: 07:45 AM</p>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-sm" aria-label="Seleção de expresso">
-<button type="button" data-expresso="manha" class="expresso-option text-left bg-primary text-on-primary border border-primary-container rounded-lg p-md transition-all shadow-sm">
-<span class="expresso-kicker font-label-caps text-label-caps uppercase opacity-80">Expresso da Manhã</span>
-<span class="block font-title-sm text-title-sm mt-xs">Ida para escola</span>
-<span class="expresso-detail block font-body-dense text-body-dense mt-xs opacity-80">Alunos que estão indo de manhã</span>
-</button>
-<button type="button" data-expresso="meio-dia" class="expresso-option text-left bg-surface border border-outline-variant text-on-surface rounded-lg p-md transition-all hover:bg-surface-container-high">
-<span class="expresso-kicker font-label-caps text-label-caps uppercase text-outline">Expresso do Meio Dia</span>
-<span class="block font-title-sm text-title-sm mt-xs">Ida e retorno</span>
-<span class="expresso-detail block font-body-dense text-body-dense mt-xs text-outline">Alunos indo para escola e alunos voltando</span>
-</button>
-<button type="button" data-expresso="tarde" class="expresso-option text-left bg-surface border border-outline-variant text-on-surface rounded-lg p-md transition-all hover:bg-surface-container-high">
-<span class="expresso-kicker font-label-caps text-label-caps uppercase text-outline">Expresso da Tarde</span>
-<span class="block font-title-sm text-title-sm mt-xs">Retorno para casa</span>
-<span class="expresso-detail block font-body-dense text-body-dense mt-xs text-outline">Alunos que estão voltando</span>
-</button>
-</div>
-<div class="flex items-center justify-between bg-surface p-sm rounded-lg border border-outline-variant">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-outline" data-icon="mark_email_read">mark_email_read</span>
-<div>
-<p class="font-body-dense text-body-dense font-medium text-on-surface">Recibo Automático</p>
-<p class="font-label-caps text-label-caps text-outline">Notificar pais ao embarcar</p>
-</div>
-</div>
-<!-- Toggle Switch -->
-<button class="w-12 h-6 rounded-full bg-primary relative flex items-center px-1 transition-colors border border-primary-container">
-<div class="w-4 h-4 rounded-full bg-on-primary absolute right-1 shadow-sm"></div>
-</button>
-</div>
-</header>
-<!-- Passenger List Canvas -->
-<div class="flex-1 overflow-y-auto p-margin space-y-md">
-<!-- Passenger 1: COMPLETED -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col md:flex-row gap-md opacity-75">
-<div class="flex items-center gap-md flex-1">
-<div class="relative">
-<img alt="Passenger Photo" class="w-12 h-12 rounded-full border border-outline-variant" data-alt="close up headshot of a young student girl with glasses, bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI1rQMkpP4WylteNUT34WtvC27ARIsZSCQH3sIa8zQjtJRRcOnYf1VCzx0KNqNf8d8pwzZmlmVhd8o-BGD9mZ4yl9Z9TV4cQnRwWgjyYgyvN5PfdNFc6HXX51xPT4r3h0L-IQnB9f-6iDcJqfB8YNKQVoRuObaLCDR_1O6ZtmhaFVnQmIFcOStqsKBpb1hb1EfyPbW4W6HJm_k6R0NeQ4pj5uoo8jWVaECC5kBBEOd_6_3rQ0dgsQ769hCuNwxhD9HTXy9DStykzAO"/>
-<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-tertiary flex items-center justify-center border-2 border-surface-container-lowest">
-<span class="material-symbols-outlined text-[12px] text-on-tertiary" data-icon="check">check</span>
-</div>
-</div>
-<div>
-<p id="completed-passenger-name" class="font-title-sm text-title-sm text-on-surface strike-through">Sofia Almeida</p>
-<p id="completed-passenger-address" class="font-body-dense text-body-dense text-outline">Rua das Acácias, 102</p>
-</div>
-</div>
-<div class="flex items-center md:justify-end">
-<span class="px-3 py-1.5 rounded-lg bg-surface text-secondary font-label-caps text-label-caps border border-outline-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-[16px]" data-icon="done_all">done_all</span>
-                        EMBARCADO
-                    </span>
-</div>
-</div>
-<!-- Passenger 2: CURRENT / ACTIVE (High Fidelity Card) -->
-<div class="bg-surface-container-lowest border-2 border-primary shadow-sm rounded-xl p-md flex flex-col gap-md relative overflow-hidden">
-<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
-<div class="flex justify-between items-start pl-sm">
-<div class="flex items-center gap-md">
-<img alt="Passenger Photo" class="w-14 h-14 rounded-lg border border-outline-variant object-cover" data-alt="headshot of a young school boy looking forward, natural outdoor lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHJJLaajSaoCc877-BGHuxpxmPhM8l8EWpUr9ZKJ4kYJyt9lstud1iuFSJOatSj13bwOjA2OXGixnpnacuBpnJPEzBSIsZCm8z2Yd5p4DP_dxM75WRHA5ra2Xi60eBhh8CUywwHW4SirD1lkSN_SekQUpynIytDevopFTwBTOkkGzYTzcXUtMMGyR6yc1iENAix4vHHihY4upHo3kGdGhmKBzFSmfMHBIqZ_z3ev-Bx_0WsarjOVNPLEAnA0vmVSjknlytzL4BEcZP"/>
-<div>
-<span id="next-stop-label" class="font-label-caps text-label-caps text-primary tracking-widest mb-1 block">PRÓXIMA PARADA</span>
-<p id="next-passenger-name" class="font-headline-md text-headline-md text-on-surface leading-none mb-1">Lucas Martins</p>
-<p id="next-passenger-seq" class="font-numeric-data text-numeric-data text-outline">Seq: 02 / 14</p>
-</div>
-</div>
-</div>
-<div class="bg-surface p-sm rounded-lg border border-outline-variant flex flex-col gap-xs pl-sm ml-sm">
-<div class="flex items-start gap-sm">
-<span class="material-symbols-outlined text-primary mt-0.5" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
-<div>
-<p id="next-passenger-address" class="font-body-base text-body-base font-medium text-on-surface">Av. Getúlio Vargas, 1450</p>
-<p id="next-passenger-reference" class="font-body-dense text-body-dense text-on-surface-variant">Apto 302 - Bloco B</p>
-</div>
-</div>
-<div class="flex items-start gap-sm mt-xs">
-<span class="material-symbols-outlined text-outline mt-0.5" data-icon="info">info</span>
-<p id="next-passenger-note" class="font-body-dense text-body-dense text-outline italic">"Aguardar em frente à padaria Pão de Mel, buzinar 2x."</p>
-</div>
-</div>
-<div class="flex gap-sm pl-sm">
-<button class="flex-1 bg-primary text-on-primary font-title-sm text-title-sm py-4 rounded-lg shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-primary/90 transition-colors flex items-center justify-center gap-sm border border-primary-container">
-<span class="material-symbols-outlined" data-icon="how_to_reg">how_to_reg</span>
-<span id="primary-action-label">Confirmar Embarque</span>
-                    </button>
-<button class="w-14 bg-surface text-on-surface border border-outline-variant rounded-lg flex items-center justify-center hover:bg-surface-variant transition-colors">
-<span class="material-symbols-outlined" data-icon="call">call</span>
-</button>
-</div>
-</div>
-<!-- Passenger 3: PENDING -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col md:flex-row gap-md">
-<div class="flex items-center gap-md flex-1">
-<div class="relative">
-<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center border border-outline-variant text-on-surface-variant font-title-sm text-title-sm">
-                            MR
-                        </div>
-<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center border-2 border-surface-container-lowest">
-<span class="font-numeric-data text-[10px] text-on-surface">3</span>
-</div>
-</div>
-<div>
-<p id="pending-passenger-name" class="font-title-sm text-title-sm text-on-surface">Marina Ribeiro</p>
-<p id="pending-passenger-address" class="font-body-dense text-body-dense text-outline">Rua Tiradentes, 88</p>
-</div>
-</div>
-</div>
-<section id="notification-log" class="hidden bg-surface-container-lowest border border-primary rounded-xl p-md">
-<div class="flex items-start justify-between gap-md">
-<div>
-<div class="flex items-center gap-xs text-primary">
-<span class="material-symbols-outlined text-[20px]" data-icon="mark_email_read">mark_email_read</span>
-<h3 class="font-title-sm text-title-sm">Pais notificados</h3>
-</div>
-<p id="notification-summary" class="font-body-dense text-body-dense text-outline mt-xs">Comprovantes enviados automaticamente.</p>
-</div>
-<span id="notification-count" class="px-3 py-1 rounded-lg bg-primary-container text-on-primary-container font-label-caps text-label-caps">0 enviados</span>
-</div>
-<div id="notification-list" class="grid grid-cols-1 md:grid-cols-2 gap-sm mt-md"></div>
-</section>
-</div>
-<!-- Fixed Footer Action -->
-<div class="bg-surface-container-lowest border-t border-outline-variant p-md lg:p-margin shrink-0 z-10 flex justify-end">
-<button id="finalize-trip-button" class="w-full md:w-auto bg-surface-container-highest text-on-surface font-title-sm text-title-sm py-3 px-8 rounded-lg border border-outline-variant hover:bg-surface-variant transition-colors flex items-center justify-center gap-sm">
-<span class="material-symbols-outlined" data-icon="flag">flag</span>
-<span id="finalize-trip-label">Finalizar Viagem</span>
-            </button>
-</div>
-</main>
-<script>
-let activeExpressoKey = "manha";
-
-const EXPRESSOS = {
-    manha: {
-        code: "Rota #402-A",
-        title: "Expresso da Manhã - Colégio Central",
-        description: "Alunos que estão indo de manhã.",
-        time: "07:15 AM",
-        target: "Meta: 07:45 AM",
-        completedName: "Sofia Almeida",
-        completedAddress: "Rua das Acácias, 102",
-        nextLabel: "PRÓXIMA PARADA",
-        nextName: "Lucas Martins",
-        nextSeq: "Seq: 02 / 14",
-        nextAddress: "Av. Getúlio Vargas, 1450",
-        nextReference: "Apto 302 - Bloco B",
-        nextNote: "\"Aguardar em frente à padaria Pão de Mel, buzinar 2x.\"",
-        pendingName: "Marina Ribeiro",
-        pendingAddress: "Rua Tiradentes, 88",
-        action: "Confirmar Embarque",
-        passengers: [
-            { child: "Sofia Almeida", guardian: "Paula Almeida", schedule: "manhã", direction: "ida" },
-            { child: "Lucas Martins", guardian: "Renata Martins", schedule: "manhã", direction: "ida" },
-            { child: "Marina Ribeiro", guardian: "Carlos Ribeiro", schedule: "manhã", direction: "ida" }
-        ]
-    },
-    "meio-dia": {
-        code: "Rota #402-B",
-        title: "Expresso do Meio Dia - Troca de Turnos",
-        description: "Alunos que estão indo para escola e alunos que estão voltando.",
-        time: "11:45 AM",
-        target: "Meta: 12:30 PM",
-        completedName: "Davi Moreira",
-        completedAddress: "Colégio Central - Portão B",
-        nextLabel: "PRÓXIMA MOVIMENTAÇÃO",
-        nextName: "Ana Beatriz",
-        nextSeq: "Seq: 06 / 22",
-        nextAddress: "Colégio Central - Entrada Principal",
-        nextReference: "Buscar quem sai do turno manhã e embarcar turma da tarde",
-        nextNote: "\"Conferir lista dupla: retorno para casa e ida para aula.\"",
-        pendingName: "João Pedro",
-        pendingAddress: "Rua Rio Branco, 410",
-        action: "Confirmar Movimento",
-        passengers: [
-            { child: "Davi Moreira", guardian: "Fernanda Moreira", schedule: "manhã", direction: "volta" },
-            { child: "Ana Beatriz", guardian: "Juliana Rocha", schedule: "tarde", direction: "ida" },
-            { child: "João Pedro", guardian: "Marcelo Souza", schedule: "tarde", direction: "ida" },
-            { child: "Clara Nunes", guardian: "Patrícia Nunes", schedule: "manhã", direction: "volta" }
-        ]
-    },
-    tarde: {
-        code: "Rota #402-C",
-        title: "Expresso da Tarde - Retorno Escolar",
-        description: "Alunos que estão voltando.",
-        time: "05:10 PM",
-        target: "Meta: 06:00 PM",
-        completedName: "Rafael Lima",
-        completedAddress: "Colégio Central - Portão A",
-        nextLabel: "PRÓXIMA ENTREGA",
-        nextName: "Marina Ribeiro",
-        nextSeq: "Seq: 09 / 18",
-        nextAddress: "Rua Tiradentes, 88",
-        nextReference: "Condomínio Primavera - Torre 2",
-        nextNote: "\"Entregar somente para responsável cadastrado.\"",
-        pendingName: "Caio Fernandes",
-        pendingAddress: "Av. Paulista, 1811",
-        action: "Confirmar Desembarque",
-        passengers: [
-            { child: "Rafael Lima", guardian: "Marta Lima", schedule: "tarde", direction: "volta" },
-            { child: "Marina Ribeiro", guardian: "Carlos Ribeiro", schedule: "tarde", direction: "volta" },
-            { child: "Caio Fernandes", guardian: "Bruna Fernandes", schedule: "tarde", direction: "volta" }
-        ]
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        vertical-align: middle;
     }
-};
+    body { background: #fff8f6; }
+</style>
+</head>
+<body class="bg-surface-container text-on-surface min-h-screen flex flex-col lg:flex-row antialiased pb-20 lg:pb-0">
 
-function setText(id, value) {
-    const element = document.getElementById(id);
-    if (element) element.textContent = value;
+<!-- TopNavBar para Mobile -->
+<nav class="fixed top-0 left-0 w-full flex justify-between items-center px-6 h-14 bg-stone-50/90 backdrop-blur-md border-b z-40 border-stone-200 lg:hidden">
+    <div class="flex items-center gap-sm">
+        <span class="material-symbols-outlined text-emerald-800">route</span>
+        <span class="text-lg font-bold text-emerald-900">VanStop</span>
+    </div>
+    <div class="flex items-center gap-3">
+        <span class="px-2 py-0.5 rounded text-[10px] bg-primary/20 text-signal font-bold uppercase">LOGÍSTICA</span>
+        <span class="material-symbols-outlined text-stone-500 cursor-pointer">notifications</span>
+    </div>
+</nav>
+
+<!-- SideNavBar para Desktop -->
+<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-4 pb-8 w-64 border-r border-stone-200 bg-stone-50 z-50">
+    <div class="px-6 mb-8 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined">directions_bus</span>
+        </div>
+        <div>
+            <div class="text-lg font-bold text-emerald-900 leading-none">VanStop</div>
+            <div class="text-stone-600 text-xs font-semibold uppercase tracking-wider mt-1.5">Módulo Motorista</div>
+        </div>
+    </div>
+    <nav class="flex-1 flex flex-col gap-1 px-3">
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-sm font-medium" href="/">
+            <span class="material-symbols-outlined">dashboard</span>
+            Dashboard
+        </a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-sm font-medium" href="Validacao_Geografica.html">
+            <span class="material-symbols-outlined">route</span>
+            Rotas
+        </a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-sm font-medium" href="Triagem_de_Passageiros.html">
+            <span class="material-symbols-outlined">groups</span>
+            Passageiros
+        </a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-sm font-medium" href="Motor_Financeiro.html">
+            <span class="material-symbols-outlined">payments</span>
+            Financeiro
+        </a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-50 text-emerald-900 border-r-4 border-emerald-700 font-semibold text-sm" href="Despacho_Tatico.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+            Logística
+        </a>
+    </nav>
+    <div class="px-3 mt-auto flex flex-col gap-1 border-t border-stone-200 pt-4">
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-sm font-medium cursor-pointer" id="btn-settings-desktop">
+            <span class="material-symbols-outlined">settings</span>
+            Configurações
+        </a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-emerald-800 transition-all text-sm font-medium" href="#">
+            <span class="material-symbols-outlined">logout</span>
+            Sair
+        </a>
+    </div>
+</aside>
+
+<!-- Área de Trabalho Principal -->
+<main class="flex-1 lg:ml-64 pt-14 lg:pt-0 flex flex-col h-screen overflow-hidden bg-surface-container">
+    <!-- Header / Cockpit Operacional -->
+    <header class="bg-white border-b border-stone-200 p-4 lg:p-6 shrink-0 flex flex-col gap-4 shadow-sm z-10">
+        <div class="flex justify-between items-start flex-wrap gap-2">
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="px-2 py-0.5 rounded bg-primary-container text-on-primary-container text-[10px] font-bold">LIVE TELEMETRIA</span>
+                    <span id="route-code" class="text-xs text-outline font-semibold">Rota #402-A</span>
+                </div>
+                <h2 id="route-title" class="text-xl lg:text-2xl font-bold text-on-surface">Expresso da Manhã - Colégio Central</h2>
+                <p id="route-description" class="text-xs text-outline mt-1">Alunos em deslocamento matutino.</p>
+            </div>
+            <div class="text-right">
+                <p id="route-time" class="text-lg font-bold text-primary">07:15 AM</p>
+                <p id="route-target" class="text-xs text-outline">Meta: 07:45 AM</p>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-stone-50 p-3 rounded-lg border border-stone-200">
+            <div class="flex items-center gap-2">
+                <span id="gps-status-dot" class="w-3 h-3 rounded-full bg-secondary animate-pulse"></span>
+                <div>
+                    <p class="text-xs font-semibold text-on-surface flex items-center gap-1">Transmitir GPS em Tempo Real</p>
+                    <p id="gps-status-text" class="text-[10px] text-outline">Aguardando ativação do motorista...</p>
+                </div>
+            </div>
+            <!-- Transmissão Toggle -->
+            <button id="btn-toggle-gps" class="px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px]">sensors</span>
+                Ativar Transmissão GPS
+            </button>
+        </div>
+    </header>
+
+    <!-- Lista Dinâmica de Passageiros na Viagem -->
+    <div class="flex-1 overflow-y-auto p-4 space-y-4" id="passengers-trip-container">
+        <div class="p-6 text-center text-xs text-outline bg-white border border-stone-200 rounded-xl">Buscando lista de alunos ativos no Supabase...</div>
+    </div>
+
+    <!-- Logs de Pais Notificados no Final -->
+    <section id="notification-log" class="hidden mx-4 my-2 bg-white border-2 border-primary rounded-xl p-4 shadow-sm max-h-[220px] overflow-y-auto">
+        <div class="flex items-start justify-between gap-4 mb-3 border-b border-stone-100 pb-2">
+            <div>
+                <h3 class="font-bold text-primary text-sm flex items-center gap-1">
+                    <span class="material-symbols-outlined">mark_email_read</span>
+                    Avisos de Chegada Enviados
+                </h3>
+            </div>
+            <span id="notification-count" class="px-2.5 py-0.5 rounded bg-primary-container text-on-primary-container text-[10px] font-bold">0 enviados</span>
+        </div>
+        <div id="notification-list" class="grid grid-cols-1 md:grid-cols-2 gap-2"></div>
+    </section>
+
+    <!-- Rodapé de Controle -->
+    <div class="bg-white border-t border-stone-200 p-4 lg:p-6 shrink-0 flex justify-between items-center z-10 shadow-[0_-2px_10px_rgba(0,0,0,0.02)]">
+        <div class="text-xs text-outline">Sessão persistida na nuvem</div>
+        <button id="finalize-trip-button" class="w-full md:w-auto bg-stone-100 text-on-surface font-semibold text-sm py-3 px-8 rounded-lg border border-stone-200 hover:bg-stone-200 transition-colors flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined">flag</span>
+            <span id="finalize-trip-label">Finalizar Viagem</span>
+        </button>
+    </div>
+</main>
+
+<!-- Barra de Navegação Mobile -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full bg-white flex justify-around items-center h-16 z-50 border-t border-stone-200 px-2 shadow-lg">
+    <a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant" href="/">
+        <span class="material-symbols-outlined mb-1">dashboard</span>
+        <span class="text-[10px] font-medium leading-none">Dashboard</span>
+    </a>
+    <a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant" href="Validacao_Geografica.html">
+        <span class="material-symbols-outlined mb-1">route</span>
+        <span class="text-[10px] font-medium leading-none">Rotas</span>
+    </a>
+    <a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant" href="Triagem_de_Passageiros.html">
+        <span class="material-symbols-outlined mb-1">groups</span>
+        <span class="text-[10px] font-medium leading-none">Passag.</span>
+    </a>
+    <a class="flex flex-col items-center justify-center w-full h-full text-primary" href="Despacho_Tatico.html">
+        <span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+        <span class="text-[10px] font-semibold leading-none">Logística</span>
+    </a>
+</nav>
+
+<script src="supabase-client.js"></script>
+<script src="settings-modal.js"></script>
+<script>
+let localAlunosList = [];
+let passengerStates = {}; // Armazena status de embarque local ('pendente', 'embarcado')
+let isGpsTransmitting = false;
+let gpsWatchId = null;
+let gpsSimInterval = null;
+
+function renderPassengerList() {
+    const container = document.getElementById("passengers-trip-container");
+    if (!container) return;
+
+    if (localAlunosList.length === 0) {
+        container.innerHTML = `
+            <div class="bg-white border border-stone-200 rounded-xl p-8 text-center flex flex-col items-center justify-center space-y-3">
+                <span class="material-symbols-outlined text-[48px] text-stone-300">directions_bus</span>
+                <h3 class="font-bold text-on-surface text-base">Nenhum passageiro na rota</h3>
+                <p class="text-xs text-outline max-w-xs">Adicione novos alunos ativos no painel para carregar a logística tática.</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = localAlunosList.map((aluno, index) => {
+        const state = passengerStates[aluno.id] || "pendente";
+        const isEmbarcado = state === "embarcado";
+
+        const statusIcon = isEmbarcado 
+            ? '<span class="material-symbols-outlined text-[14px] text-white">check</span>'
+            : `<span class="font-bold text-[10px] text-on-surface-variant">${index + 1}</span>`;
+
+        const badge = isEmbarcado
+            ? '<span class="px-3 py-1 rounded-lg bg-primary/20 text-signal border border-primary/20 text-[10px] font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">done_all</span> EMBARCADO</span>'
+            : '<span class="px-3 py-1 rounded-lg bg-stone-100 text-textMuted border border-stone-200 text-[10px] font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">hourglass_empty</span> PENDENTE</span>';
+
+        const actionButton = isEmbarcado
+            ? `<button onclick="toggleBoarding('${aluno.id}')" class="px-4 py-2 border border-stone-200 bg-white text-error rounded-lg text-xs font-semibold hover:bg-red-50">Desfazer</button>`
+            : `<button onclick="toggleBoarding('${aluno.id}')" class="flex-1 sm:flex-initial bg-primary text-white border border-primary font-semibold text-xs py-2 px-4 rounded-lg hover:bg-primary/95 transition-all flex items-center justify-center gap-1">Confirmar Embarque</button>`;
+
+        return `
+            <div class="bg-white border border-stone-200 rounded-xl p-4 flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center shadow-sm transition-all ${isEmbarcado ? 'opacity-80' : ''}">
+                <div class="flex items-center gap-4 flex-1">
+                    <div class="relative flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-stone-100 text-stone-700 flex items-center justify-center border-2 border-stone-200 font-bold text-xs shadow-sm">${aluno.nome.substring(0,2).toUpperCase()}</div>
+                        <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full ${isEmbarcado ? 'bg-primary' : 'bg-stone-200'} flex items-center justify-center border-2 border-white transition-colors">
+                            ${statusIcon}
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm lg:text-base text-on-surface ${isEmbarcado ? 'line-through text-outline' : ''}">${aluno.nome}</p>
+                        <p class="text-xs text-outline leading-tight mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-primary">location_on</span> ${aluno.endereco_casa}</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between sm:justify-end gap-3 border-t sm:border-0 pt-3 sm:pt-0 border-stone-100">
+                    ${badge}
+                    ${actionButton}
+                </div>
+            </div>
+        `;
+    }).join("");
 }
 
-function setActiveExpresso(key) {
-    const expresso = EXPRESSOS[key];
-    if (!expresso) return;
-
-    activeExpressoKey = key;
-    setText("route-code", expresso.code);
-    setText("route-title", expresso.title);
-    setText("route-description", expresso.description);
-    setText("route-time", expresso.time);
-    setText("route-target", expresso.target);
-    setText("completed-passenger-name", expresso.completedName);
-    setText("completed-passenger-address", expresso.completedAddress);
-    setText("next-stop-label", expresso.nextLabel);
-    setText("next-passenger-name", expresso.nextName);
-    setText("next-passenger-seq", expresso.nextSeq);
-    setText("next-passenger-address", expresso.nextAddress);
-    setText("next-passenger-reference", expresso.nextReference);
-    setText("next-passenger-note", expresso.nextNote);
-    setText("pending-passenger-name", expresso.pendingName);
-    setText("pending-passenger-address", expresso.pendingAddress);
-    setText("primary-action-label", expresso.action);
-
-    document.querySelectorAll(".expresso-option").forEach((button) => {
-        const isActive = button.dataset.expresso === key;
-        button.classList.toggle("bg-primary", isActive);
-        button.classList.toggle("text-on-primary", isActive);
-        button.classList.toggle("border-primary-container", isActive);
-        button.classList.toggle("shadow-sm", isActive);
-        button.classList.toggle("bg-surface", !isActive);
-        button.classList.toggle("text-on-surface", !isActive);
-        button.classList.toggle("border-outline-variant", !isActive);
-        button.setAttribute("aria-pressed", String(isActive));
-
-        button.querySelectorAll(".expresso-kicker, .expresso-detail").forEach((item) => {
-            item.classList.toggle("text-outline", !isActive);
-            item.classList.toggle("opacity-80", isActive);
-        });
-    });
-
-    resetFinalizationState();
+function toggleBoarding(alunoId) {
+    const currentState = passengerStates[alunoId] || "pendente";
+    passengerStates[alunoId] = currentState === "pendente" ? "embarcado" : "pendente";
+    renderPassengerList();
 }
 
-function buildArrivalMessage(passenger, routeTitle, time) {
-    const destinationText = passenger.direction === "ida" ? "chegou na escola" : "chegou da escola";
-    const complement = passenger.direction === "ida" ? "e já está no local de aula" : "e o retorno foi concluído";
-
-    return `Olá, ${passenger.guardian}. ${passenger.child} ${destinationText} às ${time}. ${complement}. Rota: ${routeTitle}.`;
+function updateGpsStatus(dotClass, text) {
+    const dot = document.getElementById("gps-status-dot");
+    const label = document.getElementById("gps-status-text");
+    if (dot) dot.className = `w-3 h-3 rounded-full ${dotClass}`;
+    if (label) label.textContent = text;
 }
 
-function resetFinalizationState() {
-    const log = document.getElementById("notification-log");
-    const list = document.getElementById("notification-list");
-    const button = document.getElementById("finalize-trip-button");
-    const label = document.getElementById("finalize-trip-label");
+// Envia telemetria de posição para o Supabase
+async function transmitCoordinates(lat, lng) {
+    try {
+        await vanStopApi.updateLocalizacaoVan(lat, lng, "Van 402-A");
+        updateGpsStatus("bg-primary animate-pulse", `Transmitindo: ${lat.toFixed(5)}, ${lng.toFixed(5)} (OK)`);
+    } catch (e) {
+        console.error("Falha ao salvar telemetria:", e);
+        updateGpsStatus("bg-error animate-pulse", "Erro de conexão ao enviar GPS");
+    }
+}
 
-    if (log) log.classList.add("hidden");
-    if (list) list.innerHTML = "";
-    if (label) label.textContent = "Finalizar Viagem";
-    if (button) {
-        button.disabled = false;
-        button.classList.remove("bg-primary", "text-on-primary", "border-primary");
-        button.classList.add("bg-surface-container-highest", "text-on-surface", "border-outline-variant");
+// Simulador de coordenadas para testar logs de movimento
+function startSimulation() {
+    let baseLat = -23.5892;
+    let baseLng = -46.6340;
+    
+    gpsSimInterval = setInterval(() => {
+        // Pequena variação aleatória simulando movimento urbano
+        baseLat += (Math.random() - 0.5) * 0.0004;
+        baseLng += (Math.random() - 0.5) * 0.0004;
+        transmitCoordinates(baseLat, baseLng);
+    }, 8000);
+}
+
+// Vincula o GPS real do navegador
+function startRealGps() {
+    if (!navigator.geolocation) {
+        alert("Geolocalização não suportada no navegador. Iniciando Simulação...");
+        startSimulation();
+        return;
+    }
+    
+    gpsWatchId = navigator.geolocation.watchPosition(
+        (position) => {
+            transmitCoordinates(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+            console.warn("GPS falhou, iniciando simulação de contingência:", error);
+            startSimulation();
+        },
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+    );
+}
+
+function toggleGpsTransmission() {
+    const btn = document.getElementById("btn-toggle-gps");
+    if (!btn) return;
+
+    if (isGpsTransmitting) {
+        // Desligar
+        isGpsTransmitting = false;
+        if (gpsWatchId !== null) navigator.geolocation.clearWatch(gpsWatchId);
+        if (gpsSimInterval !== null) clearInterval(gpsSimInterval);
+        
+        btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">sensors</span> Ativar Transmissão GPS';
+        btn.className = "px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-1.5";
+        updateGpsStatus("bg-secondary animate-pulse", "Transmissão inativa. Rastreamento pausado.");
+    } else {
+        // Ligar
+        isGpsTransmitting = true;
+        btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-pulse text-amber">sensors</span> Pausar Transmissão';
+        btn.className = "px-4 py-2 bg-amber text-white text-xs font-bold rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-1.5";
+        updateGpsStatus("bg-primary animate-pulse", "Obtendo sinal de GPS...");
+        
+        // Solicita GPS Real
+        startRealGps();
     }
 }
 
 function finalizeTrip() {
-    const expresso = EXPRESSOS[activeExpressoKey];
-    if (!expresso) return;
-
     const log = document.getElementById("notification-log");
     const list = document.getElementById("notification-list");
-    const summary = document.getElementById("notification-summary");
-    const count = document.getElementById("notification-count");
-    const button = document.getElementById("finalize-trip-button");
-    const label = document.getElementById("finalize-trip-label");
-    const sentAt = expresso.time;
+    const countLabel = document.getElementById("notification-count");
+    const finalizeButton = document.getElementById("finalize-trip-button");
+    const finalizeLabel = document.getElementById("finalize-trip-label");
 
-    if (!list) return;
+    if (!log || !list) return;
 
-    const notifications = expresso.passengers.map((passenger) => ({
-        ...passenger,
-        message: buildArrivalMessage(passenger, expresso.title, sentAt)
-    }));
+    const timeString = new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+    const boardedList = localAlunosList.filter(a => passengerStates[a.id] === "embarcado");
 
-    list.innerHTML = notifications.map((notification) => {
-        const status = notification.direction === "ida" ? "Chegou na escola" : "Chegou da escola";
+    if (boardedList.length === 0) {
+        alert("Nenhum passageiro embarcado nesta viagem.");
+        return;
+    }
+
+    list.innerHTML = boardedList.map((aluno) => {
+        const respName = aluno.responsaveis ? aluno.responsaveis.nome : "Responsável";
+        const message = `Olá, ${respName}. Seu filho(a) ${aluno.nome} chegou com segurança na escola às ${timeString}. Rota concluída.`;
 
         return `
-            <div class="bg-surface border border-outline-variant rounded-lg p-sm">
-                <div class="flex items-center justify-between gap-sm">
-                    <div>
-                        <p class="font-body-dense text-body-dense font-medium text-on-surface">${notification.guardian}</p>
-                        <p class="font-label-caps text-[10px] text-primary uppercase mt-xs">${status} - ${notification.schedule}</p>
-                    </div>
-                    <span class="material-symbols-outlined text-primary text-[20px]" data-icon="send">send</span>
+            <div class="bg-surface border border-stone-200 rounded-lg p-3 shadow-sm">
+                <div class="flex items-center justify-between text-xs font-bold mb-1">
+                    <span class="text-on-surface">${respName}</span>
+                    <span class="text-primary flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px]">send</span> Transmitido</span>
                 </div>
-                <p class="font-body-dense text-[12px] text-outline mt-sm leading-snug">${notification.message}</p>
+                <p class="text-[11px] text-outline leading-snug">${message}</p>
             </div>
         `;
     }).join("");
 
-    if (log) log.classList.remove("hidden");
-    if (summary) summary.textContent = `${expresso.title}: mensagens transacionais enviadas conforme o horário cadastrado de cada criança.`;
-    if (count) count.textContent = `${notifications.length} enviados`;
-    if (label) label.textContent = "Viagem Finalizada";
-    if (button) {
-        button.disabled = true;
-        button.classList.remove("bg-surface-container-highest", "text-on-surface", "border-outline-variant");
-        button.classList.add("bg-primary", "text-on-primary", "border-primary");
+    log.classList.remove("hidden");
+    if (countLabel) countLabel.textContent = `${boardedList.length} enviados`;
+    if (finalizeLabel) finalizeLabel.textContent = "Viagem Concluída";
+    if (finalizeButton) {
+        finalizeButton.disabled = true;
+        finalizeButton.className = "w-full md:w-auto bg-primary text-white font-bold text-sm py-3 px-8 rounded-lg border border-primary flex items-center justify-center gap-2";
+    }
+    
+    // Desliga GPS ao concluir viagem
+    if (isGpsTransmitting) {
+        toggleGpsTransmission();
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".expresso-option").forEach((button) => {
-        button.addEventListener("click", () => setActiveExpresso(button.dataset.expresso));
-    });
+document.addEventListener("DOMContentLoaded", async () => {
+    // Vincula modal de configurações
+    const openSettings = () => {
+        const event = new CustomEvent("open-vanstop-settings");
+        window.dispatchEvent(event);
+    };
+    const btnDesktop = document.getElementById("btn-settings-desktop");
+    if (btnDesktop) btnDesktop.addEventListener("click", openSettings);
 
-    const finalizeButton = document.getElementById("finalize-trip-button");
-    if (finalizeButton) {
-        finalizeButton.addEventListener("click", finalizeTrip);
+    const btnToggleGps = document.getElementById("btn-toggle-gps");
+    if (btnToggleGps) btnToggleGps.addEventListener("click", toggleGpsTransmission);
+
+    const btnFinalize = document.getElementById("finalize-trip-button");
+    if (btnFinalize) btnFinalize.addEventListener("click", finalizeTrip);
+
+    try {
+        // Carrega alunos ativos do Supabase
+        const dbAlunos = await vanStopApi.getAlunos();
+        localAlunosList = dbAlunos.filter(a => a.status === 'ativo');
+
+        // Inicializa estado de embarque de todos os alunos como pendente
+        localAlunosList.forEach(a => {
+            passengerStates[a.id] = "pendente";
+        });
+
+    } catch (e) {
+        console.error("Falha ao ler alunos no painel de despacho:", e);
     }
 
-    setActiveExpresso("manha");
+    renderPassengerList();
 });
 </script>
-<script src="settings-modal.js"></script>
-</body></html>
+</body>
+</html>

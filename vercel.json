@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
+    { "source": "/", "destination": "/PaginaDeLogin.html" },
     { "source": "/overview", "destination": "/index.html" },
     { "source": "/dashboard", "destination": "/index.html" },
     { "source": "/rotas", "destination": "/Validacao_Geografica.html" },

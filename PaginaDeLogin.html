@@ -58,9 +58,8 @@
                 flex: 0 0 52%;
                 min-height: 100vh;
                 background-color: #003e4a;
-                background-image: url('assets/img/van-background.png');
-                background-size: cover;
-                background-position: center center;
+                overflow: hidden;
+                position: relative;
             }
 
             /* Painel direito: fundo branco puro com conteúdo centralizado */
@@ -115,9 +114,8 @@
                 height: 46vh;
                 min-height: 220px;
                 background-color: #003e4a;
-                background-image: url('assets/img/van-background.png');
-                background-size: cover;
-                background-position: center center;
+                overflow: hidden;
+                position: relative;
                 flex-shrink: 0;
             }
 
@@ -148,6 +146,13 @@
             .logo-area {
                 display: none !important;
             }
+        }
+
+        .van-video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* ══════════════════════════════════════════════════════════════════
@@ -627,8 +632,14 @@
 
     <div id="page-login" class="page active">
 
-        <div class="mobile-illustration"></div>
-        <div class="panel-left"></div>
+        <div class="mobile-illustration">
+            <video class="van-video login-van-video" src="assets/img/van.mp4" poster="assets/img/van-background.png"
+                preload="auto" muted playsinline></video>
+        </div>
+        <div class="panel-left">
+            <video class="van-video login-van-video" src="assets/img/van.mp4" poster="assets/img/van-background.png"
+                preload="auto" muted playsinline></video>
+        </div>
 
         <div class="panel-right">
             <div class="form-card">
@@ -689,8 +700,14 @@
     </div>
 
     <div id="page-cadastro" class="page">
-        <div class="mobile-illustration"></div>
-        <div class="panel-left"></div>
+        <div class="mobile-illustration">
+            <video class="van-video" src="assets/img/van.mp4" poster="assets/img/van-background.png" preload="metadata"
+                muted playsinline></video>
+        </div>
+        <div class="panel-left">
+            <video class="van-video" src="assets/img/van.mp4" poster="assets/img/van-background.png" preload="metadata"
+                muted playsinline></video>
+        </div>
 
         <div class="panel-right">
             <div class="form-card">
@@ -771,8 +788,14 @@
     </div>
 
     <div id="page-esqueci" class="page">
-        <div class="mobile-illustration"></div>
-        <div class="panel-left"></div>
+        <div class="mobile-illustration">
+            <video class="van-video" src="assets/img/van.mp4" poster="assets/img/van-background.png" preload="metadata"
+                muted playsinline></video>
+        </div>
+        <div class="panel-left">
+            <video class="van-video" src="assets/img/van.mp4" poster="assets/img/van-background.png" preload="metadata"
+                muted playsinline></video>
+        </div>
 
         <div class="panel-right">
             <div class="form-card">
@@ -951,7 +974,7 @@
         const API_BASE_URL = 'http://localhost:8000';
 
         /** Página de dashboard para redirecionar após login bem-sucedido */
-        const DASHBOARD_URL = 'index.html';
+        const DASHBOARD_URL = 'ZapAssina_Driver_App.html';
 
         /* ================================================================
          * UTILITÁRIOS DE UI
@@ -1038,6 +1061,40 @@
             }
         }
 
+        function playLoginVideoAndRedirect() {
+            const videos = Array.from(document.querySelectorAll('#page-login .login-van-video'));
+            const video = videos.find(item => item.offsetParent !== null) || videos[0];
+
+            if (!video) {
+                window.location.href = DASHBOARD_URL;
+                return Promise.resolve();
+            }
+
+            return new Promise((resolve) => {
+                let finished = false;
+                let fallbackTimer;
+
+                const finish = () => {
+                    if (finished) return;
+                    finished = true;
+                    clearTimeout(fallbackTimer);
+                    window.location.href = DASHBOARD_URL;
+                    resolve();
+                };
+
+                video.pause();
+                video.currentTime = 0;
+                video.addEventListener('ended', finish, { once: true });
+                video.addEventListener('error', finish, { once: true });
+
+                fallbackTimer = setTimeout(finish, 7000);
+                const playResult = video.play();
+                if (playResult && typeof playResult.catch === 'function') {
+                    playResult.catch(finish);
+                }
+            });
+        }
+
         /**
          * Mapeia mensagens de erro do backend para textos amigáveis em português.
          */
@@ -1057,76 +1114,23 @@
         }
 
         /* ================================================================
-         * LOGIN — POST /api/login
+         * LOGIN — reproduz o vídeo da van e entra no painel
          * ================================================================ */
 
         async function handleLogin() {
             const emailEl = document.getElementById('l-email');
-            const senhaEl = document.getElementById('l-senha');
-
             const email = emailEl.value.trim();
-            const senha = senhaEl.value;
-
-            // Validação local antes de chamar a API
-            let valid = true;
-            if (!email || !email.includes('@')) {
-                markInputError('l-email');
-                valid = false;
-            }
-            if (!senha || senha.length < 6) {
-                markInputError('l-senha');
-                valid = false;
-            }
-            if (!valid) {
-                showFeedback('login-feedback', 'Preencha todos os campos corretamente.', 'error');
-                return;
-            }
 
             setBtnLoading('btn-entrar', true);
             hideFeedback('login-feedback');
 
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, senha }),
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    // Backend retornou erro (4xx / 5xx)
-                    const detail = data?.detail || data?.message || JSON.stringify(data);
-                    showFeedback('login-feedback', friendlyError(detail), 'error');
-                    return;
-                }
-
-                // ✅ Login bem-sucedido — persiste a sessão
-                localStorage.setItem('vanstop_access_token',  data.access_token);
-                localStorage.setItem('vanstop_refresh_token', data.refresh_token);
-                localStorage.setItem('vanstop_user',          JSON.stringify(data.user));
-
-                // Lembrar-me: persiste email no localStorage se marcado
-                const lembrar = document.getElementById('l-lembrar');
-                if (lembrar && lembrar.checked) {
-                    localStorage.setItem('vanstop_remember_email', email);
-                } else {
-                    localStorage.removeItem('vanstop_remember_email');
-                }
-
-                showFeedback('login-feedback', `Bem-vindo, ${data.user?.nome || data.user?.email}! Redirecionando...`, 'success');
-
-                // Aguarda brevemente para o usuário ver a mensagem e redireciona
-                setTimeout(() => {
-                    window.location.href = DASHBOARD_URL;
-                }, 900);
-
-            } catch (err) {
-                // Erro de rede (servidor offline, CORS, etc.)
-                showFeedback('login-feedback', friendlyError(err.message), 'error');
-            } finally {
-                setBtnLoading('btn-entrar', false, 'Entrar');
+            const lembrar = document.getElementById('l-lembrar');
+            if (email && lembrar && lembrar.checked) {
+                localStorage.setItem('vanstop_remember_email', email);
             }
+
+            showFeedback('login-feedback', 'Entrando...', 'success');
+            await playLoginVideoAndRedirect();
         }
 
         /* ================================================================

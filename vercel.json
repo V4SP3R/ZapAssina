@@ -3,8 +3,8 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/", "destination": "/PaginaDeLogin.html" },
-    { "source": "/overview", "destination": "/ZapAssina_Driver_App.html" },
-    { "source": "/dashboard", "destination": "/ZapAssina_Driver_App.html" },
+    { "source": "/overview", "destination": "/Dashboard_Operacional.html" },
+    { "source": "/dashboard", "destination": "/Dashboard_Operacional.html" },
     { "source": "/rotas", "destination": "/Validacao_Geografica.html" },
     { "source": "/passageiros", "destination": "/Triagem_de_Passageiros.html" },
     { "source": "/financeiro", "destination": "/Motor_Financeiro.html" },
